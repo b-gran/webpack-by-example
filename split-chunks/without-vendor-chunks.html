@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Webpack App</title>
+  </head>
+
+  <body>
+      <!-- The necessary dependencies aren't loaded, so the chunk won't run. -->
+      <!-- It also won't error out. It waits for the rest of the entry chunk's dependencies. -->
+      <script type="text/javascript" src="entry1.js">
+      </script>
+  </body>
+</html>

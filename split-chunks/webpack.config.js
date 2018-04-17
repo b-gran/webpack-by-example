@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   // Each one of these entry points gets its own chunk & chunkGroup
@@ -24,6 +25,13 @@ module.exports = {
   //    * entry3.js
   // Each of these chunks will have all of its dependencies "statically linked" -- accessible via
   // a simple __webpack_require__
+  //
+  // Each entry point chunk will have a deferred modules list like this:
+  //
+  //    /******/ 	// add entry module to deferred list
+  //    /******/ 	deferredModules.push(["./entry1.js","vendors~entry1~entry2~entry3","vendors~entry1~entry2"]);
+  //
+  // Until all of these modules are loaded, the entry chunk won't run.
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -32,6 +40,12 @@ module.exports = {
 
   plugins: [
     // Generates an HTML file that loads _all_ entries via <script /> tags
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(),
+
+    // Just copies files from one place to another
+    new CopyWebpackPlugin([
+      { from: './without-vendor-chunks.html' },
+      { from: './with-vendor-chunks.html' },
+    ]),
   ]
 }

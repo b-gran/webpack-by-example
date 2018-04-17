@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Webpack App</title>
+  </head>
+
+  <body>
+      <!-- Here, the necessary dependency chunks _are_ supplied. -->
+      <!-- In this case, webpack will load the entry chunk. -->
+      <script type="text/javascript" src="vendors~entry1~entry2~entry3.js"></script>
+      <script type="text/javascript" src="vendors~entry1~entry2.js"></script>
+      <script type="text/javascript" src="entry1.js"></script>
+  </body>
+</html>
